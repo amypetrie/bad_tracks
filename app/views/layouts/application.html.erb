@@ -8,7 +8,17 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
+  <% flash.each do |type, message| %>
+    <%= content_tag :div, message, class: type %>
+  <% end %>
+
   <body>
+    <% if @breadcrumbs %>
+      <p> Last pages visited </p>
+      <% @breadcrumbs.each do |b| %>
+        <%= link_to b, b %>
+      <% end %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
